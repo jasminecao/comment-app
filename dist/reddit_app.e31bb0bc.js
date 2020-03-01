@@ -28325,7 +28325,14 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-var Post = function Post(props) {};
+var Post = function Post(props) {
+  if (!props.valid) {
+    return null;
+  }
+
+  console.log(props);
+  return _react.default.createElement("h2", null, "hi ", props.name);
+};
 
 var _default = Post;
 exports.default = _default;
@@ -28358,19 +28365,37 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 var NewPost = function NewPost() {
   var _useState = (0, _react.useState)(''),
       _useState2 = _slicedToArray(_useState, 2),
-      author = _useState2[0],
-      setAuthor = _useState2[1];
+      nameInput = _useState2[0],
+      setNameInput = _useState2[1];
 
   var _useState3 = (0, _react.useState)(''),
       _useState4 = _slicedToArray(_useState3, 2),
       postInput = _useState4[0],
       setPostInput = _useState4[1];
 
+  var _useState5 = (0, _react.useState)(false),
+      _useState6 = _slicedToArray(_useState5, 2),
+      viewPost = _useState6[0],
+      setViewPost = _useState6[1];
+
+  var nameText = '';
+  var postText = '';
+
+  var handleClick = function handleClick() {
+    if (nameInput !== '' && postInput !== '') {
+      nameText = nameInput;
+      postText = postInput;
+      console.log(nameText);
+      setViewPost(true); // setNameInput('')
+      // setPostInput('')
+    }
+  };
+
   return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("h2", null, "new post"), _react.default.createElement("input", {
     type: "text",
-    value: author,
+    value: nameInput,
     onChange: function onChange(e) {
-      return setAuthor(e.target.value);
+      return setNameInput(e.target.value);
     }
   }), _react.default.createElement("br", null), _react.default.createElement("br", null), _react.default.createElement("input", {
     type: "text",
@@ -28379,8 +28404,14 @@ var NewPost = function NewPost() {
       return setPostInput(e.target.value);
     }
   }), _react.default.createElement("br", null), _react.default.createElement("br", null), _react.default.createElement("button", {
-    type: "submit"
-  }, "submit"), _react.default.createElement(_Post.default, null));
+    type: "submit",
+    onClick: handleClick
+  }, "submit"), _react.default.createElement(_Post.default, {
+    name: nameText,
+    post: postText,
+    depth: 0,
+    valid: viewPost
+  }));
 };
 
 var _default = NewPost;
@@ -28445,7 +28476,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51743" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58823" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
