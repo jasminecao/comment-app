@@ -1,21 +1,29 @@
 import React, {useState} from 'react'
 import Post from './Post'
+import PostContainer from './PostContainer'
+import {connect} from 'react-redux'
 
 const NewPost = () => {
   const [nameInput, setNameInput] = useState('')
   const [postInput, setPostInput] = useState('')
   const [viewPost, setViewPost] = useState(false)
-  let nameText = ''
-  let postText = ''
+  const [entry, setEntry] = useState([])
 
   const handleClick = () => {
     if (nameInput !== '' && postInput !== '') {
-      nameText = nameInput
-      postText = postInput
-      console.log(nameText)
       setViewPost(true)
-      // setNameInput('')
-      // setPostInput('')
+
+      const newEntry = {
+        name: nameInput,
+        post: postInput,
+      }
+      const copyArray = entry.slice()
+      copyArray.push(newEntry)
+      setEntry(copyArray)
+      console.log(entry)
+
+      setNameInput('')
+      setPostInput('')
     }
   }
 
@@ -28,8 +36,10 @@ const NewPost = () => {
       <input type="text" value={postInput} onChange={e => setPostInput(e.target.value)} />
       <br></br>
       <br></br>
-      <button type="submit" onClick={handleClick}>submit</button>
-      <Post name={nameText} post={postText} depth={0} valid={viewPost} />
+      <button type="submit" onClick={() => handleClick()} disabled={(nameInput !== '' && postInput !== '') ? false : true}>submit</button>
+      {console.log(entry)}
+      <PostContainer entries={entry} />
+      {/* <Post entry={entry} /> */}
     </>
   )
 }

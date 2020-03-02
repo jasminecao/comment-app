@@ -1,12 +1,20 @@
 import React, {useState} from 'react'
+import Voter from './Voter'
+import NewPost from './NewPost'
 
 const Post = props => {
-  if (!props.valid) {
+  const {entry} = props 
+  if (entry.length == 0) {
     return null
   }
-  console.log(props)
   return (
-    <h2>hi {props.name}</h2>
+    <>
+      <Voter />
+      <h2>hi {entry.name}</h2>
+      <h2>{entry.post}</h2>
+      <button>Reply</button>
+      <NewPost />
+    </>
   )
 }
 
