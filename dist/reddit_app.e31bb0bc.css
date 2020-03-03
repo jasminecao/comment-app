@@ -10,21 +10,46 @@ body {
 
 h1 {
   text-align: center;
+  color: rgb(255, 90, 95);
+}
+
+h3 {
+  color: rgb(255, 90, 95);
 }
 
 input[type=text] {
-  padding: 1%;
-  height: 5%; 
+  font-size: 0.9rem;
+  padding: 0.5rem 0.5rem;
+  height: 9%; 
   width: 100%;
   margin-bottom: 1rem;
+  border-radius: 3px;
+  border-image: initial;
+  border-style: solid;
+  border-color: lightgray;
 }
 
-textarea { 
+input:focus {
+  border-color: #007a87;
+  outline: none;
+}
+
+textarea {
   font-family: 'Inter', sans-serif;
-  padding: 1%;
-  height: 10%;
+  font-size: 0.9rem;
+  padding: 0.5rem 0.5rem;
+  height: 13%; 
   width: 100%;
   margin-bottom: 1rem;
+  border-radius: 3px;
+  border-image: initial;
+  border-color: lightgray;
+  border-width: 2px;
+}
+
+textarea:focus {
+  border-color: #007a87;
+  outline: none;
 }
 
 .newpost {
@@ -35,6 +60,7 @@ textarea {
   padding: 24px;
   margin-bottom: 1rem;
   margin-top: 1rem;
+  background-color: rgb(223, 251, 253);
 }
 
 .thread {
@@ -47,7 +73,7 @@ textarea {
 }
 
 .name {
-  color: rgb(13, 95, 248);
+  color: #007a87;
   margin-bottom: 0.4rem;
   font-weight: bold;
   padding: 0;
@@ -83,6 +109,28 @@ textarea {
 
 .counter {
   margin: 0;
+}
+
+button {
+  font-family: 'Inter', sans-serif;
+  padding: 1%;
+  border-image: initial;
+  border-radius: 3px;
+  background: rgb(255, 90, 95);
+  border-color: rgb(255, 90, 95);
+  border-style: solid;
+  color: rgb(255, 255, 255);
+}
+
+.reply {
+  font-family: 'Inter', sans-serif;
+  padding: 1%;
+  border-image: initial;
+  border-radius: 3px;
+  background: #007a87;
+  border-color: #007a87;
+  border-style: solid;
+  color: rgb(255, 255, 255);
 }
 
 /*# sourceMappingURL=/reddit_app.e31bb0bc.css.map */

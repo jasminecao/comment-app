@@ -25,7 +25,6 @@ const NewPost = (props) => {
       const copyArray = entry.slice()
       copyArray.push(newEntry)
       setEntry(copyArray)
-      console.log(entry)
 
       setNameInput('')
       setPostInput('')

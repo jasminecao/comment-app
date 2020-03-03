@@ -28390,35 +28390,56 @@ var Post = function Post(props) {
   var entry = props.entry,
       depth = props.depth;
 
-  var _useState = (0, _react.useState)(false),
+  var _useState = (0, _react.useState)(true),
       _useState2 = _slicedToArray(_useState, 2),
       showReply = _useState2[0],
       setShowReply = _useState2[1];
 
+  var _useState3 = (0, _react.useState)(1),
+      _useState4 = _slicedToArray(_useState3, 2),
+      count = _useState4[0],
+      setCount = _useState4[1];
+
+  var _useState5 = (0, _react.useState)([]),
+      _useState6 = _slicedToArray(_useState5, 2),
+      replyList = _useState6[0],
+      setReplyList = _useState6[1];
+
   if (entry.length === 0 || depth === 0) {
     return null;
-  }
+  } // const displayReply = () => {
+  //   if (showReply) {
+  //     let copyList = [<div key={0}> <NewPost title={"reply"} depth={depth - 1} /> </div>]
+  //     setReplyList(copyList)
+  //   }
+  // }
 
-  var displayReply = function displayReply() {
-    if (showReply) {
-      return _react.default.createElement(_NewPost.default, {
-        title: "reply",
-        depth: depth - 1
-      });
-    }
+
+  var addReply = function addReply() {
+    setCount(count + 1);
+    var copyList = replyList.slice();
+    copyList.push(_react.default.createElement("div", {
+      key: count
+    }, " ", _react.default.createElement(_NewPost.default, {
+      title: "reply",
+      depth: depth - 1
+    }), " "));
+    console.log(count);
+    console.log(copyList);
+    setReplyList(copyList);
   };
 
-  return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("div", {
-    className: "thread"
-  }, _react.default.createElement(_Voter.default, null), _react.default.createElement("p", {
+  console.log(replyList);
+  return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_Voter.default, null), _react.default.createElement("p", {
     className: "name"
   }, entry.name), _react.default.createElement("p", {
     className: "post"
-  }, entry.post), displayReply(), _react.default.createElement("button", {
+  }, entry.post), replyList, _react.default.createElement("button", {
+    className: "reply",
     onClick: function onClick() {
-      return showReply ? setShowReply(false) : setShowReply(true);
+      return addReply();
     }
-  }, "reply")));
+  }, "reply"));
 };
 
 var _default = Post;
@@ -28512,7 +28533,6 @@ var NewPost = function NewPost(props) {
       var copyArray = entry.slice();
       copyArray.push(newEntry);
       setEntry(copyArray);
-      console.log(entry);
       setNameInput('');
       setPostInput('');
     }
@@ -28591,13 +28611,17 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _react = _interopRequireDefault(require("react"));
+var _react = _interopRequireWildcard(require("react"));
 
 var _NewPost = _interopRequireDefault(require("./NewPost"));
 
 var _Post = _interopRequireDefault(require("./Post"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 var PostContainer = function PostContainer(props) {
   console.log(props);
@@ -28608,11 +28632,14 @@ var PostContainer = function PostContainer(props) {
     return null;
   }
 
-  var entryList = entries.map(function (entry) {
-    return _react.default.createElement(_Post.default, {
+  var entryList = entries.map(function (entry, index) {
+    return _react.default.createElement("div", {
+      className: "thread",
+      key: index
+    }, _react.default.createElement(_Post.default, {
       entry: entry,
       depth: depth
-    });
+    }));
   });
   return _react.default.createElement("div", {
     className: "posts"
