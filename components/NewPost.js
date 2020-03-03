@@ -1,9 +1,10 @@
 import React, {useState} from 'react'
 import Post from './Post'
 import PostContainer from './PostContainer'
-import {connect} from 'react-redux'
+import Title from './Title'
 
-const NewPost = () => {
+const NewPost = (props) => {
+  const {title} = props
   const [nameInput, setNameInput] = useState('')
   const [postInput, setPostInput] = useState('')
   const [viewPost, setViewPost] = useState(false)
@@ -29,17 +30,13 @@ const NewPost = () => {
 
   return (
     <>
-      <h2>new post</h2>
-      <input type="text" value={nameInput} onChange={e => setNameInput(e.target.value)} />
-      <br></br>
-      <br></br>
-      <input type="text" value={postInput} onChange={e => setPostInput(e.target.value)} />
-      <br></br>
-      <br></br>
-      <button type="submit" onClick={() => handleClick()} disabled={(nameInput !== '' && postInput !== '') ? false : true}>submit</button>
-      {console.log(entry)}
+      <div className="newpost">
+        <Title title={title}/>
+        <input type="text" placeholder="name..." value={nameInput} onChange={e => setNameInput(e.target.value)} />
+        <textarea placeholder="write a new post..." value={postInput} onChange={e => setPostInput(e.target.value)} />
+        <button type="submit" onClick={() => handleClick()} disabled={(nameInput !== '' && postInput !== '') ? false : true}>submit</button>
+      </div>
       <PostContainer entries={entry} />
-      {/* <Post entry={entry} /> */}
     </>
   )
 }
