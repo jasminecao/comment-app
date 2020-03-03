@@ -3,17 +3,15 @@ import Voter from './Voter'
 import NewPost from './NewPost'
 
 const Post = props => {
-  const {entry} = props
-  const [showReply, setShowReply] = useState(true)
-  if (entry.length == 0) {
+  const {entry, depth} = props
+  const [showReply, setShowReply] = useState(false)
+  if (entry.length === 0 || depth === 0) {
     return null
   }
 
   const displayReply = () => {
-    if (!showReply) {
-      return <NewPost title="reply" />
-    } else {
-      return
+    if (showReply) {
+      return <NewPost title="reply" depth = {depth - 1}/>
     }
   }
 

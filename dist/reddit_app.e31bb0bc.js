@@ -28387,24 +28387,24 @@ function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) ||
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var Post = function Post(props) {
-  var entry = props.entry;
+  var entry = props.entry,
+      depth = props.depth;
 
-  var _useState = (0, _react.useState)(true),
+  var _useState = (0, _react.useState)(false),
       _useState2 = _slicedToArray(_useState, 2),
       showReply = _useState2[0],
       setShowReply = _useState2[1];
 
-  if (entry.length == 0) {
+  if (entry.length === 0 || depth === 0) {
     return null;
   }
 
   var displayReply = function displayReply() {
-    if (!showReply) {
+    if (showReply) {
       return _react.default.createElement(_NewPost.default, {
-        title: "reply"
+        title: "reply",
+        depth: depth - 1
       });
-    } else {
-      return;
     }
   };
 
@@ -28475,7 +28475,8 @@ function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) ||
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var NewPost = function NewPost(props) {
-  var title = props.title;
+  var title = props.title,
+      depth = props.depth;
 
   var _useState = (0, _react.useState)(''),
       _useState2 = _slicedToArray(_useState, 2),
@@ -28496,6 +28497,10 @@ var NewPost = function NewPost(props) {
       _useState8 = _slicedToArray(_useState7, 2),
       entry = _useState8[0],
       setEntry = _useState8[1];
+
+  if (depth === 0) {
+    return null;
+  }
 
   var handleClick = function handleClick() {
     if (nameInput !== '' && postInput !== '') {
@@ -28538,12 +28543,14 @@ var NewPost = function NewPost(props) {
       },
       disabled: nameInput !== '' && postInput !== '' ? false : true
     }, "submit")), _react.default.createElement(_PostContainer.default, {
-      entries: entry
+      entries: entry,
+      depth: depth
     }));
   } else {
     if (viewPost) {
       return _react.default.createElement(_PostContainer.default, {
-        entries: entry
+        entries: entry,
+        depth: depth
       });
     } else {
       return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("div", {
@@ -28593,15 +28600,18 @@ var _Post = _interopRequireDefault(require("./Post"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var PostContainer = function PostContainer(props) {
-  var entries = props.entries;
+  console.log(props);
+  var entries = props.entries,
+      depth = props.depth;
 
-  if (entries.length == 0) {
+  if (entries.length === 0 || depth === 0) {
     return null;
   }
 
   var entryList = entries.map(function (entry) {
     return _react.default.createElement(_Post.default, {
-      entry: entry
+      entry: entry,
+      depth: depth
     });
   });
   return _react.default.createElement("div", {
@@ -28703,7 +28713,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var App = function App() {
   return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("h1", null, "r/cis197"), _react.default.createElement(_NewPost.default, {
-    title: "new post"
+    title: "new post",
+    depth: 3
   }));
 };
 

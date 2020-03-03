@@ -4,11 +4,15 @@ import PostContainer from './PostContainer'
 import Title from './Title'
 
 const NewPost = (props) => {
-  const {title} = props
+  const {title, depth} = props
   const [nameInput, setNameInput] = useState('')
   const [postInput, setPostInput] = useState('')
   const [viewPost, setViewPost] = useState(false)
   const [entry, setEntry] = useState([])
+
+  if (depth === 0) {
+    return null
+  }
 
   const handleClick = () => {
     if (nameInput !== '' && postInput !== '') {
@@ -37,13 +41,12 @@ const NewPost = (props) => {
           <textarea placeholder="write a new post..." value={postInput} onChange={e => setPostInput(e.target.value)} />
           <button type="submit" onClick={() => handleClick()} disabled={(nameInput !== '' && postInput !== '') ? false : true}>submit</button>
         </div>
-        <PostContainer entries={entry} />
+        <PostContainer entries={entry} depth={depth}/>
       </>
     )
-  } 
-  else {
+  } else {
     if (viewPost) {
-      return (<PostContainer entries={entry} />)
+      return (<PostContainer entries={entry} depth={depth}/>)
     } else {
       return (
         <>
