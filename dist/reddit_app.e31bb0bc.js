@@ -28447,8 +28447,6 @@ exports.default = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _NewPost = _interopRequireDefault(require("./NewPost"));
-
 var _Post = _interopRequireDefault(require("./Post"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -28481,7 +28479,7 @@ var PostContainer = function PostContainer(props) {
 
 var _default = PostContainer;
 exports.default = _default;
-},{"react":"node_modules/react/index.js","./NewPost":"components/NewPost.js","./Post":"components/Post.js"}],"components/Title.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","./Post":"components/Post.js"}],"components/Title.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -28511,8 +28509,6 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
-
-var _Post = _interopRequireDefault(require("./Post"));
 
 var _PostContainer = _interopRequireDefault(require("./PostContainer"));
 
@@ -28640,7 +28636,7 @@ var NewPost = function NewPost(props) {
 
 var _default = NewPost;
 exports.default = _default;
-},{"react":"node_modules/react/index.js","./Post":"components/Post.js","./PostContainer":"components/PostContainer.js","./Title":"components/Title.js"}],"node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","./PostContainer":"components/PostContainer.js","./Title":"components/Title.js"}],"node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
 
 function getBundleURLCached() {

@@ -1,5 +1,4 @@
 import React, {useState} from 'react'
-import NewPost from './NewPost'
 import Post from './Post'
 
 const PostContainer = props => {
