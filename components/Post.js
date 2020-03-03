@@ -23,8 +23,8 @@ const Post = props => {
         <Voter />
         <p className="name">{entry.name}</p>
         <p className="post">{entry.post}</p>
-        <button onClick={() => showReply ? setShowReply(false) : setShowReply(true)}>reply</button>
         {displayReply()}
+        <button onClick={() => showReply ? setShowReply(false) : setShowReply(true)}>reply</button>
       </div>
     </>
   )

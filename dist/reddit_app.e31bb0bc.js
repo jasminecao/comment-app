@@ -28414,11 +28414,11 @@ var Post = function Post(props) {
     className: "name"
   }, entry.name), _react.default.createElement("p", {
     className: "post"
-  }, entry.post), _react.default.createElement("button", {
+  }, entry.post), displayReply(), _react.default.createElement("button", {
     onClick: function onClick() {
       return showReply ? setShowReply(false) : setShowReply(true);
     }
-  }, "reply"), displayReply()));
+  }, "reply")));
 };
 
 var _default = Post;
@@ -28513,32 +28513,65 @@ var NewPost = function NewPost(props) {
     }
   };
 
-  return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("div", {
-    className: "newpost"
-  }, _react.default.createElement(_Title.default, {
-    title: title
-  }), _react.default.createElement("input", {
-    type: "text",
-    placeholder: "name...",
-    value: nameInput,
-    onChange: function onChange(e) {
-      return setNameInput(e.target.value);
+  if (title === 'new post') {
+    return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("div", {
+      className: "newpost"
+    }, _react.default.createElement(_Title.default, {
+      title: title
+    }), _react.default.createElement("input", {
+      type: "text",
+      placeholder: "name...",
+      value: nameInput,
+      onChange: function onChange(e) {
+        return setNameInput(e.target.value);
+      }
+    }), _react.default.createElement("textarea", {
+      placeholder: "write a new post...",
+      value: postInput,
+      onChange: function onChange(e) {
+        return setPostInput(e.target.value);
+      }
+    }), _react.default.createElement("button", {
+      type: "submit",
+      onClick: function onClick() {
+        return handleClick();
+      },
+      disabled: nameInput !== '' && postInput !== '' ? false : true
+    }, "submit")), _react.default.createElement(_PostContainer.default, {
+      entries: entry
+    }));
+  } else {
+    if (viewPost) {
+      return _react.default.createElement(_PostContainer.default, {
+        entries: entry
+      });
+    } else {
+      return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("div", {
+        className: "newpost"
+      }, _react.default.createElement(_Title.default, {
+        title: title
+      }), _react.default.createElement("input", {
+        type: "text",
+        placeholder: "name...",
+        value: nameInput,
+        onChange: function onChange(e) {
+          return setNameInput(e.target.value);
+        }
+      }), _react.default.createElement("textarea", {
+        placeholder: "write a new post...",
+        value: postInput,
+        onChange: function onChange(e) {
+          return setPostInput(e.target.value);
+        }
+      }), _react.default.createElement("button", {
+        type: "submit",
+        onClick: function onClick() {
+          return handleClick();
+        },
+        disabled: nameInput !== '' && postInput !== '' ? false : true
+      }, "submit")));
     }
-  }), _react.default.createElement("textarea", {
-    placeholder: "write a new post...",
-    value: postInput,
-    onChange: function onChange(e) {
-      return setPostInput(e.target.value);
-    }
-  }), _react.default.createElement("button", {
-    type: "submit",
-    onClick: function onClick() {
-      return handleClick();
-    },
-    disabled: nameInput !== '' && postInput !== '' ? false : true
-  }, "submit")), _react.default.createElement(_PostContainer.default, {
-    entries: entry
-  }));
+  }
 };
 
 var _default = NewPost;

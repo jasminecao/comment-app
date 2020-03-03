@@ -28,17 +28,35 @@ const NewPost = (props) => {
     }
   }
 
-  return (
-    <>
-      <div className="newpost">
-        <Title title={title}/>
-        <input type="text" placeholder="name..." value={nameInput} onChange={e => setNameInput(e.target.value)} />
-        <textarea placeholder="write a new post..." value={postInput} onChange={e => setPostInput(e.target.value)} />
-        <button type="submit" onClick={() => handleClick()} disabled={(nameInput !== '' && postInput !== '') ? false : true}>submit</button>
-      </div>
-      <PostContainer entries={entry} />
-    </>
-  )
+  if (title === 'new post') {
+    return (
+      <>
+        <div className="newpost">
+          <Title title={title}/>
+          <input type="text" placeholder="name..." value={nameInput} onChange={e => setNameInput(e.target.value)} />
+          <textarea placeholder="write a new post..." value={postInput} onChange={e => setPostInput(e.target.value)} />
+          <button type="submit" onClick={() => handleClick()} disabled={(nameInput !== '' && postInput !== '') ? false : true}>submit</button>
+        </div>
+        <PostContainer entries={entry} />
+      </>
+    )
+  } 
+  else {
+    if (viewPost) {
+      return (<PostContainer entries={entry} />)
+    } else {
+      return (
+        <>
+          <div className="newpost">
+            <Title title={title}/>
+            <input type="text" placeholder="name..." value={nameInput} onChange={e => setNameInput(e.target.value)} />
+            <textarea placeholder="write a new post..." value={postInput} onChange={e => setPostInput(e.target.value)} />
+            <button type="submit" onClick={() => handleClick()} disabled={(nameInput !== '' && postInput !== '') ? false : true}>submit</button>
+          </div>
+        </>
+      )
+    }
+  }
 }
 
 export default NewPost
