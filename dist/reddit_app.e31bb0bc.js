@@ -28339,15 +28339,21 @@ var Voter = function Voter(props) {
       count = _useState2[0],
       setCount = _useState2[1];
 
-  return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("p", {
+  return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("div", {
+    className: "voter"
+  }, _react.default.createElement("p", {
+    id: "triangle-up",
     onClick: function onClick() {
       return setCount(count + 1);
     }
-  }, "upvote"), _react.default.createElement("p", {
+  }), _react.default.createElement("p", {
+    className: "counter"
+  }, count), _react.default.createElement("p", {
+    id: "triangle-down",
     onClick: function onClick() {
       return setCount(count - 1);
     }
-  }, "downvote"), _react.default.createElement("p", null, count));
+  })));
 };
 
 var _default = Voter;
@@ -28433,7 +28439,7 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 var Title = function Title(props) {
   var title = props.title;
-  return _react.default.createElement("h2", null, title);
+  return _react.default.createElement("h3", null, title);
 };
 
 var _default = Title;

@@ -3,7 +3,7 @@ import React, {useState} from 'react'
 const Title = (props) => {
   const {title} = props
   return (
-    <h2>{title}</h2>
+    <h3>{title}</h3>
   )
 }
 
