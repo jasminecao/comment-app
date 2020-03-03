@@ -17,13 +17,9 @@ const Post = props => {
       setCount(count + 1)
       let copyList = replyList.slice()
       copyList.push(<div key={count}> <NewPost title={'reply'} depth={depth - 1} /> </div>)
-      console.log(count)
-      console.log(copyList)
       setReplyList(copyList)
     }
   }
-
-  console.log(replyList)
 
   return (
     <>

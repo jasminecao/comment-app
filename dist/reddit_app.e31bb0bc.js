@@ -28419,13 +28419,10 @@ var Post = function Post(props) {
         title: 'reply',
         depth: depth - 1
       }), " "));
-      console.log(count);
-      console.log(copyList);
       setReplyList(copyList);
     }
   };
 
-  console.log(replyList);
   return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_Voter.default, null), _react.default.createElement("p", {
     className: "name"
   }, entry.name), _react.default.createElement("p", {
@@ -28461,7 +28458,6 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 var PostContainer = function PostContainer(props) {
-  console.log(props);
   var entries = props.entries,
       depth = props.depth;
 

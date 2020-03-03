@@ -3,7 +3,6 @@ import NewPost from './NewPost'
 import Post from './Post'
 
 const PostContainer = props => {
-  console.log(props)
   const {entries, depth} = props
 
   if (entries.length === 0 || depth === 0) {
