@@ -28416,7 +28416,7 @@ var Post = function Post(props) {
       copyList.push(_react.default.createElement("div", {
         key: count
       }, " ", _react.default.createElement(_NewPost.default, {
-        title: "reply",
+        title: 'reply',
         depth: depth - 1
       }), " "));
       console.log(count);
@@ -28607,38 +28607,38 @@ var NewPost = function NewPost(props) {
       entries: entry,
       depth: depth
     }));
+  }
+
+  if (viewPost) {
+    return _react.default.createElement(_PostContainer.default, {
+      entries: entry,
+      depth: depth
+    });
   } else {
-    if (viewPost) {
-      return _react.default.createElement(_PostContainer.default, {
-        entries: entry,
-        depth: depth
-      });
-    } else {
-      return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("div", {
-        className: "newpost"
-      }, _react.default.createElement(_Title.default, {
-        title: title
-      }), _react.default.createElement("input", {
-        type: "text",
-        placeholder: "name...",
-        value: nameInput,
-        onChange: function onChange(e) {
-          return setNameInput(e.target.value);
-        }
-      }), _react.default.createElement("textarea", {
-        placeholder: "write a new post...",
-        value: postInput,
-        onChange: function onChange(e) {
-          return setPostInput(e.target.value);
-        }
-      }), _react.default.createElement("button", {
-        type: "submit",
-        onClick: function onClick() {
-          return handleClick();
-        },
-        disabled: nameInput !== '' && postInput !== '' ? false : true
-      }, "submit")));
-    }
+    return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("div", {
+      className: "newpost"
+    }, _react.default.createElement(_Title.default, {
+      title: title
+    }), _react.default.createElement("input", {
+      type: "text",
+      placeholder: "name...",
+      value: nameInput,
+      onChange: function onChange(e) {
+        return setNameInput(e.target.value);
+      }
+    }), _react.default.createElement("textarea", {
+      placeholder: "write a new post...",
+      value: postInput,
+      onChange: function onChange(e) {
+        return setPostInput(e.target.value);
+      }
+    }), _react.default.createElement("button", {
+      type: "submit",
+      onClick: function onClick() {
+        return handleClick();
+      },
+      disabled: nameInput !== '' && postInput !== '' ? false : true
+    }, "submit")));
   }
 };
 
@@ -28734,7 +28734,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var App = function App() {
   return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("h1", null, "r/cis197"), _react.default.createElement(_NewPost.default, {
-    title: "new post",
+    title: 'new post',
     depth: 3
   }));
 };

@@ -6,7 +6,7 @@ const App = () => {
   return (
     <>
       <h1>r/cis197</h1>
-      <NewPost title={"new post"} depth={3} />
+      <NewPost title={'new post'} depth={3} />
     </>
   )
 }

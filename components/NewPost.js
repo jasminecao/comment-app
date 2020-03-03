@@ -43,10 +43,9 @@ const NewPost = (props) => {
         <PostContainer entries={entry} depth={depth}/>
       </>
     )
+  } if (viewPost) {
+    return (<PostContainer entries={entry} depth={depth}/>)
   } else {
-    if (viewPost) {
-      return (<PostContainer entries={entry} depth={depth}/>)
-    } else {
       return (
         <>
           <div className="newpost">
@@ -59,6 +58,5 @@ const NewPost = (props) => {
       )
     }
   }
-}
 
 export default NewPost
