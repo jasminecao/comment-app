@@ -12,20 +12,15 @@ const Post = props => {
     return null
   }
 
-  // const displayReply = () => {
-  //   if (showReply) {
-  //     let copyList = [<div key={0}> <NewPost title={"reply"} depth={depth - 1} /> </div>]
-  //     setReplyList(copyList)
-  //   }
-  // }
-
   const addReply = () => {
-    setCount(count + 1)
-    let copyList = replyList.slice()
-    copyList.push(<div key={count}> <NewPost title={"reply"} depth={depth - 1} /> </div>)
-    console.log(count)
-    console.log(copyList)
-    setReplyList(copyList) 
+    if (showReply) {
+      setCount(count + 1)
+      let copyList = replyList.slice()
+      copyList.push(<div key={count}> <NewPost title={"reply"} depth={depth - 1} /> </div>)
+      console.log(count)
+      console.log(copyList)
+      setReplyList(copyList)
+    }
   }
 
   console.log(replyList)

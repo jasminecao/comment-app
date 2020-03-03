@@ -28407,26 +28407,22 @@ var Post = function Post(props) {
 
   if (entry.length === 0 || depth === 0) {
     return null;
-  } // const displayReply = () => {
-  //   if (showReply) {
-  //     let copyList = [<div key={0}> <NewPost title={"reply"} depth={depth - 1} /> </div>]
-  //     setReplyList(copyList)
-  //   }
-  // }
-
+  }
 
   var addReply = function addReply() {
-    setCount(count + 1);
-    var copyList = replyList.slice();
-    copyList.push(_react.default.createElement("div", {
-      key: count
-    }, " ", _react.default.createElement(_NewPost.default, {
-      title: "reply",
-      depth: depth - 1
-    }), " "));
-    console.log(count);
-    console.log(copyList);
-    setReplyList(copyList);
+    if (showReply) {
+      setCount(count + 1);
+      var copyList = replyList.slice();
+      copyList.push(_react.default.createElement("div", {
+        key: count
+      }, " ", _react.default.createElement(_NewPost.default, {
+        title: "reply",
+        depth: depth - 1
+      }), " "));
+      console.log(count);
+      console.log(copyList);
+      setReplyList(copyList);
+    }
   };
 
   console.log(replyList);
@@ -28444,7 +28440,52 @@ var Post = function Post(props) {
 
 var _default = Post;
 exports.default = _default;
-},{"react":"node_modules/react/index.js","./Voter":"components/Voter.js","./NewPost":"components/NewPost.js"}],"components/Title.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","./Voter":"components/Voter.js","./NewPost":"components/NewPost.js"}],"components/PostContainer.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _NewPost = _interopRequireDefault(require("./NewPost"));
+
+var _Post = _interopRequireDefault(require("./Post"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+var PostContainer = function PostContainer(props) {
+  console.log(props);
+  var entries = props.entries,
+      depth = props.depth;
+
+  if (entries.length === 0 || depth === 0) {
+    return null;
+  }
+
+  var entryList = entries.map(function (entry, index) {
+    return _react.default.createElement("div", {
+      className: "thread",
+      key: index
+    }, _react.default.createElement(_Post.default, {
+      entry: entry,
+      depth: depth
+    }));
+  });
+  return _react.default.createElement("div", {
+    className: "posts"
+  }, entryList);
+};
+
+var _default = PostContainer;
+exports.default = _default;
+},{"react":"node_modules/react/index.js","./NewPost":"components/NewPost.js","./Post":"components/Post.js"}],"components/Title.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -28603,52 +28644,7 @@ var NewPost = function NewPost(props) {
 
 var _default = NewPost;
 exports.default = _default;
-},{"react":"node_modules/react/index.js","./Post":"components/Post.js","./PostContainer":"components/PostContainer.js","./Title":"components/Title.js"}],"components/PostContainer.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _react = _interopRequireWildcard(require("react"));
-
-var _NewPost = _interopRequireDefault(require("./NewPost"));
-
-var _Post = _interopRequireDefault(require("./Post"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
-var PostContainer = function PostContainer(props) {
-  console.log(props);
-  var entries = props.entries,
-      depth = props.depth;
-
-  if (entries.length === 0 || depth === 0) {
-    return null;
-  }
-
-  var entryList = entries.map(function (entry, index) {
-    return _react.default.createElement("div", {
-      className: "thread",
-      key: index
-    }, _react.default.createElement(_Post.default, {
-      entry: entry,
-      depth: depth
-    }));
-  });
-  return _react.default.createElement("div", {
-    className: "posts"
-  }, entryList);
-};
-
-var _default = PostContainer;
-exports.default = _default;
-},{"react":"node_modules/react/index.js","./NewPost":"components/NewPost.js","./Post":"components/Post.js"}],"node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","./Post":"components/Post.js","./PostContainer":"components/PostContainer.js","./Title":"components/Title.js"}],"node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
 
 function getBundleURLCached() {
@@ -28730,8 +28726,6 @@ exports.default = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _PostContainer = _interopRequireDefault(require("./components/PostContainer"));
-
 var _NewPost = _interopRequireDefault(require("./components/NewPost"));
 
 require("./style.css");
@@ -28747,7 +28741,7 @@ var App = function App() {
 
 var _default = App;
 exports.default = _default;
-},{"react":"node_modules/react/index.js","./components/PostContainer":"components/PostContainer.js","./components/NewPost":"components/NewPost.js","./style.css":"style.css"}],"index.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","./components/NewPost":"components/NewPost.js","./style.css":"style.css"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
